@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+inotifywait -m -e close_write -e moved_to --format "%f" "$PWD"
+# -m = monitor, runs indefinetly, reports every event
+# -e close_write, watching for the event "close_write"
+# -e moved_to, watching for the event of a file being moved, i.e moving file into here, changing name
+# --format "%f", only outputs filename that triggered event (not path)
+
+read -r filename; do
+    echo "'$filename' downloaded"
+done
+
