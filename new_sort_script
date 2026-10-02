@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+#Defining the $Downloads variable, by showing where it is on the machine
+Downloads="$HOME/Documents/github/dlorg_nike_tornros/Downloads"
+
+#Creating all relevant dirs at the same time
+mkdir -p "$Downloads"/{text,pdf,image,video,slides}
+
+#Going trough all files present in Downloads
+# ## = removing everything before the last /, to make $file shorter
+for file in "$Downloads"/*; do
+	filename="${file##*/}"
+
+	case "$filename" in
+		*.txt|*.md|*.rtf) 
+			mv "$file" "$Downloads/text/"
+			;;
+	esac
+done
