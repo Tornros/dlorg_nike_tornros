@@ -1,36 +1,59 @@
 #!/usr/bin/env bash
 
-#Creating relevant dir, idempotent
-mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/text
-mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/pdf
-mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/images
-mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/videos
-mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/audio
-mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/slides/keynote
-mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/slides/power_point
+#Defining the $Downloads variable, by showing where it is on the machine
+Downloads="$HOME/Documents/github/dlorg_nike_tornros/Downloads"
 
-#For-statement, for moving files
-for file in Downloads/*; do
+#Creating all relevant dirs at the same time, idempotent
+mkdir -p "$Downloads"/{text,pdf,image,video,slides,audio,code,archives,installers}
+#Subfolders for slides, sorted on file-type
+mkdir -p "$Downloads"/slides/{powerpoint,keynote,others}
 
-#TEXT
-	if [[ $file == *.txt ]]; then
-	mv "$file" Downloads/text/
-	fi
-#PDF
-	if [[ $file == *.pdf ]]; then
-	mv "$file" Downloads/pdf/
-	fi
+#Going trough all files present in Downloads
+# ## = removing everything before the last /, to make $file shorter
+for file in "$Downloads"/*; do
+	filename="${file##*/}"
+	
+	#If filename... 
+	case "$filename" in
+		#Ends on *.txt etc, then:
+		*.txt|*.md|*.rtf) 
+			#Move to this folder
+			mv "$file" "$Downloads/text/"
+			;;
+		*.png|*.jpg|*.jpeg|*.gif|*.tiff|*.svg)
+			mv "$file" "$Downloads/image/"
+			;; 
 
-#IMAGES
-	if [[ $file == *.png, *.jpg, *.jpeg ]]; then
-	mv "$file" Downloads/pdf/
-	fi
-#SLIDES
-	if [[ $file == *.key ]]; then
-	mv "$file" Downloads/slides/keynote
-	fi
+		*.pdf)
+			mv "$file" "$Downloads/pdf/"
+			;; 
+		*.mov|*.mp4|*.mkv|*.avi)
+			mv "$file" "$Downloads/video/"
+			;; 
+		
+		#You can make dirs within dirs to organize files even more:
+		*.pptx|*.ppt|*.ppsx|*.potx)
+			mv "$file" "$Downloads/slides/powerpoint"
+			;; 
+		*.key)
+			mv "$file" "$Downloads/slides/keynote"
+			;; 
+		*.odp)
+			mv "$file" "$Downloads/slides/others"
+			;;
+ 
+		*.mp3|*.wav|*.flac)
+			mv "$file" "$Downloads/audio"
+			;; 
+		*.sh|*.py|*.js|*.html|*.css|*.sql)
+			mv "$file" "$Downloads/code"
+			;; 
+		*.zip|*.7z|*.rar)
+			mv "$file" "$Downloads/archives"
+			;; 
 
-	if [[ $file == *.pptx ]]; then
-	mv "$file" Downloads/slides/power_point
-	fi
+		*.exe)
+			mv "$file" "$Downloads/installers"
+			;; 
+	esac
 done

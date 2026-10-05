@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+#Creating relevant dir, idempotent
+mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/text
+mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/pdf
+mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/images
+mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/videos
+mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/audio
+mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/slides/keynote
+mkdir -p ~/Documents/github/dlorg_nike_tornros/Downloads/slides/power_point
+
+#For-statement, for moving files
+for file in Downloads/*; do
+
+#TEXT
+	if [[ $file == *.txt ]]; then
+	mv "$file" Downloads/text/
+	fi
+#PDF
+	if [[ $file == *.pdf ]]; then
+	mv "$file" Downloads/pdf/
+	fi
+
+#IMAGES
+	if [[ $file == *.png, *.jpg, *.jpeg ]]; then
+	mv "$file" Downloads/pdf/
+	fi
+#SLIDES
+	if [[ $file == *.key ]]; then
+	mv "$file" Downloads/slides/keynote
+	fi
+
+	if [[ $file == *.pptx ]]; then
+	mv "$file" Downloads/slides/power_point
+	fi
+done
