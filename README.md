@@ -1,7 +1,7 @@
 # DLORG Nike Törnros
 
 ## Short introduction
-Welcome! I have created a bash-based organization system that automatically sorts a simulated 'Downloads' folder on a computer. Link to **[video explanation](insertlink.here)**.
+Welcome! I have created a bash-based organization system that automatically sorts files in a simulated 'Downloads' folder on a computer. Link to **[video explanation](insertlink.here)**.
 
 ## Script functions
 `sort_script` creates relevant directories and moves files into their corresponding directories. Automatically runs on startup and can also be manually executed.
@@ -14,30 +14,12 @@ Welcome! I have created a bash-based organization system that automatically sort
 
 ## Structure
 
-- "Downloaded" (created) files end up in '~/Documents/github/dlorg_nike_tornros/Downloads/', simulating a downloads folder on a computer.
-- *And older, archived, iteration of the code can be found in 'admin/archived_codes'*
+- "Downloaded" (created) files end up in `~/Documents/github/dlorg_nike_tornros/Downloads/`, simulating a downloads folder on a computer.
+- *An older, archived, iteration of `sort_script` can be found in `admin/archived_codes`*.
 
 With all relevant directories in use, the structure will look like this:
 
-├── admin/
-│   └── archived_codes/
-│       └── *`old_sort_script`*
-├── Downloads/
-│   ├── archives/
-│   ├── audio/
-│   ├── code/
-│   ├── image/
-│   ├── installers/
-│   ├── **`monitor_script`**
-│   ├── pdf/
-│   ├── slides/
-│   │   ├── keynote/
-│   │   ├── others/
-│   │   └── powerpoint/
-│   ├── text/
-│   └── video/
-├── README.md
-└── **`sort_script`**
+![tree_structure](admin/tree_structure.png)
 
 ## How it works
 
@@ -51,3 +33,5 @@ Some directors contain subdirectories. For example, files belonging in `Download
 - *.key --> `Downloads/slides/keynote`
 
 If the directory does not already exist, the script creates relevant directories and subdirectories.
+
+Upon executing the script, or launching the machine, all files inside ´Downloads/` will be moved into their corresponding directories. 
