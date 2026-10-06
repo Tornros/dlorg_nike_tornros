@@ -1,37 +1,25 @@
 #!/usr/bin/env bash
 
-#Defining the $Downloads variable, by showing where it is on the machine
+# Defining the $Downloads variable, by showing where it is on the machine
 Downloads="$HOME/Documents/github/dlorg_nike_tornros/Downloads"
 
-#Creating all relevant dirs at the same time, idempotent
-mkdir -p "$Downloads"/{text,pdf,image,video,slides,audio,code,archives,installers}
-#Subfolders for slides, sorted on file-type
-mkdir -p "$Downloads"/slides/{powerpoint,keynote,others}
+# Creating all relevant dirs and subdirs at the same time, idempotent
+mkdir -p "$Downloads"/{text,slides/{powerpoint,keynote,other}pdf/contracts,image,video,audio,code,archives,installers}
 
-#Going trough all files present in Downloads
+# Going trough all files present in Downloads
 # ## = removing everything before the last /, to make $file shorter
 for file in "$Downloads"/*; do
 	filename="${file##*/}"
 	
-	#If filename... 
+	# If filename... 
 	case "$filename" in
-		#Ends on *.txt etc, then:
+		# File extension = *.txt etc, then:
 		*.txt|*.md|*.rtf) 
 			#Move to this folder
 			mv "$file" "$Downloads/text/"
 			;;
-		*.png|*.jpg|*.jpeg|*.gif|*.tiff|*.svg)
-			mv "$file" "$Downloads/image/"
-			;; 
 
-		*.pdf)
-			mv "$file" "$Downloads/pdf/"
-			;; 
-		*.mov|*.mp4|*.mkv|*.avi)
-			mv "$file" "$Downloads/video/"
-			;; 
-		
-		#You can make dirs within dirs to organize files even more:
+		# Files going into subdirectories:
 		*.pptx|*.ppt|*.ppsx|*.potx)
 			mv "$file" "$Downloads/slides/powerpoint"
 			;; 
@@ -39,8 +27,25 @@ for file in "$Downloads"/*; do
 			mv "$file" "$Downloads/slides/keynote"
 			;; 
 		*.odp)
-			mv "$file" "$Downloads/slides/others"
+			mv "$file" "$Downloads/slides/other"
 			;;
+
+		# File being moved based on both prefix and file extension:
+		contract_*.pdf)
+			mv "$file" "$Downloads/pdf/contracts/"
+			;;
+		# File extension sorter must come after prefix sorter. 
+		*.pdf)
+			mv "$file" "$Downloads/pdf/"
+			;;
+ 
+		*.png|*.jpg|*.jpeg|*.gif|*.tiff|*.svg)
+			mv "$file" "$Downloads/image/"
+			;; 
+
+		*.mov|*.mp4|*.mkv|*.avi)
+			mv "$file" "$Downloads/video/"
+			;; 
  
 		*.mp3|*.wav|*.flac)
 			mv "$file" "$Downloads/audio"
