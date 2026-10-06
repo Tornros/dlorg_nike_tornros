@@ -6,11 +6,11 @@ Welcome! I have created a bash-based organization system that automatically sort
 ## Script functions
 `sort_script` creates relevant directories and moves files into their corresponding directories based on file extensions. File prefix can also be used for further organization. Automatically runs on startup and can also be manually executed.
 
-**Note**: Files must be present in `dlorg_nike_tornros/Downloads` in order to be affected by `sort_script`
+**Note**: Files must be present in `dlorg_nike_tornros/Downloads` in order to be affected by `sort_script`.
 
-`monitor_script` watches over the creation and editing of files.
+`monitor_script` optional, monitors the creation and editing of files.
 
-`ignore.gitignore` makes git ignore irrelevant files, such as vim's `.swp` files.
+`ignore.gitignore` makes Git ignore irrelevant files, such as Vim's `.swp` files.
 
 ## Structure
 
@@ -25,9 +25,9 @@ With all relevant directories in use, the structure will look like this:
 
 `sort_script` checks the files in the `Downloads/` directory and determines which directory each file belongs to based on its **file extension**. For example:
 - *.txt, *.md, *.rtf --> `Downloads/text`
-- *.mov, *.mp4, *.mkv, *.avi --> `Downloads/text`
+- *.mov, *.mp4, *.mkv, *.avi --> `Downloads/video`
 
-Some directors contain subdirectories. For example, files belonging in `Downloads/slides` are further organized based on their source operating system, `/slides/powerpoint` and `/slides/keynote`. This was done in order to showcase the script working with subdirectories.
+Some directories contain subdirectories. For example, files belonging in `Downloads/slides` are further organized based on their file type, `/slides/powerpoint`, `/slides/keynote` and `/slides/others`. This was done in order to showcase the script working with subdirectories.
 
 - *.pptx --> `Downloads/slides/powerpoint`
 - *.key --> `Downloads/slides/keynote`
@@ -37,4 +37,4 @@ Files can also be moved into subdirectories based on prefix, for example:
 
 If the directory does not already exist, the script creates relevant directories and subdirectories.
 
-Upon executing the script, or launching the machine, all files inside `Downloads/` will be moved into their corresponding directories. 
+Upon executing the script, or when launching the machine, all files inside `Downloads/` will be moved into their corresponding directories. 
