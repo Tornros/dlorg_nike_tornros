@@ -4,7 +4,6 @@
 Welcome! I have created a bash-based organization system that automatically sorts a simulated 'Downloads' folder on a computer. Link to **[video explanation](insertlink.here)**.
 
 ## Script functions
-
 `sort_script` creates relevant directories and moves files into their corresponding directories. Automatically runs on startup and can also be manually executed.
 
 **Note**: Files must be present in `dlorg_nike_tornros/Downloads` in order to be affected by `sort_script`
@@ -46,9 +45,9 @@ With all relevant directories in use, the structure will look like this:
 - *.txt, *.md, *.rtf --> `Downloads/text`
 - *.mov, *.mp4, *.mkv, *.avi --> `Downloads/text`
 
-Some directors contain subdirectories. For example, files belonging in `Downloads/slides` are further organized based on their source operating system, `/slides/powerpoint` and `/slides/keynote`. This was done in order to showcase the script working with subdirectories. 
+Some directors contain subdirectories. For example, files belonging in `Downloads/slides` are further organized based on their source operating system, `/slides/powerpoint` and `/slides/keynote`. This was done in order to showcase the script working with subdirectories.
 
 - *.pptx --> `Downloads/slides/powerpoint`
 - *.key --> `Downloads/slides/keynote`
 
-If the directory does not already exist, the script creates relevant directories and subdirectories. 
+If the directory does not already exist, the script creates relevant directories and subdirectories.
