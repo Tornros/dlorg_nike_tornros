@@ -4,7 +4,7 @@
 Downloads="$HOME/Documents/github/dlorg_nike_tornros/Downloads"
 
 # Creating all relevant dirs and subdirs at the same time, idempotent
-mkdir -p "$Downloads"/{text,slides/{powerpoint,keynote,other}pdf/contracts,image,video,audio,code,archives,installers}
+mkdir -p "$Downloads"/{text,slides/{powerpoint,keynote,other},pdf/contracts,image,video,audio,code,archives,installers}
 
 # Going trough all files present in Downloads
 # ## = removing everything before the last /, to make $file shorter

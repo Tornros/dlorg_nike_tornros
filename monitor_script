@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+Downloads="$HOME/Documents/github/dlorg_nike_tornros/Downloads"
+
+inotifywait -m -e close_write -e moved_to --format "%f" "$Downloads" |
+# inotifywait = listens to changes in file system
+# -m = monitor, runs indefinitely, reports every event
+# -e close_write = watching for the event "close_write"
+# -e moved_to = watching for the event of a file being moved into Downloads/
+# --format "%f" = only outputs the filename that triggered the event (not the path)
+while read -r filename; do
+    "$HOME/Documents/github/dlorg_nike_tornros/sort_script"
+# Launches the sorting script
+done
+
