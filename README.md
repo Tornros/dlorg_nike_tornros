@@ -29,7 +29,7 @@ With all relevant directories in use, the structure will look like this:
 
 3.
 a) `sort_script` checks the files in the `Downloads/` directory and determines which directory each file belongs in based on its **file extension**. For example:
-- *.tixt, *.md, *.rtf --> `Downloads/text`
+- *.txt, *.md, *.rtf --> `Downloads/text`
 - *.mov, *.mp4, *.mkv, *.avi --> `Downloads/video`
 
 b) Some directories contain subdirectories. For example, files belonging in the umbrella-directory`Downloads/slides` are further organized based on their file type, `/slides/powerpoint`, `/slides/keynote` and `/slides/others`. This was done in order to showcase the script working with subdirectories.
